@@ -104,3 +104,62 @@ return 0;
               
           }
       };
+      //climbing stairs
+      int climbStairs(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        return climbStairs(n-1) + climbStairs(n-2);
+    }
+    //pow(x,n)
+    if(x==0)return 0.0;
+       if(x==1)return 1.0;
+       if(x==-1 && n%2==0)return 1.0;
+       if(x==-1 && n%2!=0)return -1.0;
+
+        long binary=n;
+        if(n<0){
+            x=1/x;
+            binary=-binary;
+        }
+        double ans=1;
+        while(binary>0){
+            if(binary%2==1){
+                ans=ans*x;
+            }
+            x=x*x;
+            binary/=2;
+        }
+        return ans;
+    }
+    //two sum
+    
+    int n = nums.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return {i, j};
+                }
+            }
+        }
+        return {};
+    
+        
+    }
+    //maximum subarray
+    int maxSubArray(vector<int>& nums) {
+        
+        int currentsum=0,maxsum=INT_MIN;
+   
+        for(int val:nums){
+           currentsum+=val;
+           maxsum=max(currentsum,maxsum);
+   
+           if(currentsum<=0){
+               currentsum=0;
+           }
+        }
+   return maxsum;
+   
+       }
+       
