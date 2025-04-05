@@ -460,5 +460,144 @@ if((ch>='0' && ch<='9')||
         return mini;  
        }
 
-       
 
+//trapping rain water
+int n =height.size(),water=0;
+int leftmax=0,rightmax=0,maxheight=height[0],index=0;
+
+for(int i=1;i<n;i++){
+    if(height[i]>maxheight){
+        maxheight=height[i];
+        index=i;
+    }
+}
+for(int i=0;i<index;i++){
+    if(leftmax>height[i]){
+        water+=leftmax-height[i];
+    }
+    else
+    leftmax=height[i];
+}
+  for(int i=n-1;i>index;i--){
+    if(rightmax>height[i]){
+        water+=rightmax-height[i];
+    }
+    else
+    rightmax=height[i];
+}
+return water;
+}
+
+//find first and last position in an sorted array
+
+int start=0,end=nums.size()-1,mid;
+        vector<int>a(2);
+        a[0]=-1;
+        a[1]=-1;
+
+        if(nums.size() == 1 && target == nums[0]){
+        a[0]=a[1]=0;
+        return a;}
+        else if(nums.size() == 2)
+        {
+            if(target = nums[0] && target == nums[1])
+            {a[0]=0;a[1]=1;}
+            else if (target == nums[0] && target != nums[1])
+            a[0]= 0;
+            else if(target != nums[0] && target == nums[1])
+            a[1]=1;
+            return a;
+        }
+        else{
+
+
+        while(start<end){
+            mid=start+(end-start)/2;
+            if(nums[mid]==target){
+                a[0]=mid-1;
+                end = mid-1;
+            }
+            else if(nums[mid]<target)
+            {
+                start=mid+1;
+            }
+            else
+            end=mid-1;
+        }
+
+        start=0,end=nums.size()-1;
+
+        while(start<end){
+            mid=start+(end-start)/2;
+            if(nums[mid]==target){
+                a[1]=mid;
+                start = mid+1;
+            }
+            else if(nums[mid]<target){
+                start=mid+1;
+                }  
+            else
+                end=mid-1;
+            }  
+        }        
+        return a;
+    }
+
+    //sqrt(x)
+    if(x<2)
+        return x;
+      int start=0,end=x,mid,ans;
+      while(start<=end){
+        mid=start+(end-start)/2;
+        if(mid==x/mid){
+            ans=mid;
+            break;
+        }
+        else if(mid<x/mid)
+        {
+            ans=mid;
+            start=mid+1;
+        }
+        else
+        end=mid-1;
+      }
+        
+      return ans;
+      
+    }
+
+    //search insert posiyion
+    int start=0,end =nums.size()-1,ans=nums.size(),mid;
+    while(start<=end)
+    {
+     mid=start+(end-start)/2;
+     if(nums[mid]==target)
+     {
+         ans=mid;
+         break;
+     }
+     else if(nums[mid]<target)
+     start=mid+1;
+     else
+     {
+         ans=mid;
+         end=mid-1;
+     }
+    } 
+     return ans;
+ }
+ //input array is sorted
+ int start=0,end = numbers.size()-1;
+ while(start<end){
+    if(numbers[start]+numbers[end]==target){
+        ans.push_back(start+1);
+        ans.push_back(end+1);
+        return ans;
+    }
+    else if(numbers[start]+numbers[end]<target)
+    start++;
+    else
+    end--;
+ }
+ return ans;
+}
