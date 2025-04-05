@@ -162,4 +162,303 @@ return 0;
    return maxsum;
    
        }
+       //rotate image
+       int n=matrix.size();
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1;j<n;j++)
+            swap(matrix[i][j],matrix[j][i]);
+        };
+
+        for(int i=0;i<n;i++){
+         int start=0,end=n-1;
+         while(start<end){
+            swap(matrix[i][start],matrix[i][end]);
+            start++,end--;
+         }
+
+        }  
+        
+          }
+
+          //best time to buy stock and sell
+          int maxProfit(vector<int>& prices) {
+
+            int maxprofit=0,buy=prices[0];
+            for(int i=0;i<prices.size();i++){
+                if(prices[i]>buy){
+                maxprofit=max(maxprofit,prices[i]-buy);
+                }
+                buy=min(buy,prices[i]);
+            }
+            return maxprofit;
+        }
+
+        //longest substring without repeating character
+        vector<bool>count(256,0);
+        int first=0,second=0,longest=0;
+        while(second<s.size())
+        {
+while(count[s[second]])
+{
+     count[s[first]]=0;
+     first++;
+
+}
+    count[s[second]]=1;
+    longest=max(longest,second-first+1);
+    second++;
+
+        }
+        return longest;
+
+        //sort vowels
+        vector<int>lower(26,0);
+        vector<int>upper(26,0);
+   
+        for(int  i=0;i<s.size();i++)
+        {
+           if(s[i]=='a'||  s[i]=='e'||  s[i]=='i'|| s[i]=='o'|| s[i]=='u')
+           {
+           lower[s[i]-'a']++;
+           s[i]='#';
+           }
+   
+     else if(s[i]=='A'||  s[i]=='E'||  s[i]=='I'|| s[i]=='O'|| s[i]=='U')
+           {
+           upper[s[i]-'A']++;
+           s[i]='#';
+           }
+        }
+         string vowel;
+         for(int i=0;i<26;i++)
+         {
+           char c='A'+i;
+           while(upper[i])
+           {
+               vowel+=c;
+               upper[i]--;
+           }
+         }
+         for(int i=0;i<26;i++)
+         {
+           char c ='a'+i;
+         while(lower[i])
+         {
+           vowel+=c;
+           lower[i]--;
+         }
+         }
+          int first=0,second=0;
+          while(second<vowel.size())
+          {
+           if(s[first]=='#')
+           {
+          (s[first]=vowel[second]);
+          second++;
+           }
+           first++;
+          }
+          return s;
+           
+           
+        
+       }
+
+       //roman to integer
+       int num(char c)
+{
+    if(c=='I')
+    return 1;
+    else if(c=='V')
+    return 5;
+    else if(c=='X')
+    return 10;
+    else if(c=='L')
+    return 50;
+    else if(c=='C')
+    return 100;
+    else if(c=='D')
+    return 500;
+    else 
+    return 1000;
+}
+    int romanToInt(string s) {
+
+    int sum=0,index=0;
+    while(index<s.size()-1)
+    {
+        if(num(s[index])<num(s[index+1]))
+        sum-=num(s[index]);
+        else
+        sum+=num(s[index]);
+        index++;
+    }
+    sum+=num(s[index]);
+    return sum;
+
+        
+    }
+    //time needed to buy tickest
+    for (int i=0;i<tickets.size();i++)
+        {
+            q.push(i);
+        }
+        int time = 0;
+        while(tickets[k]!=0)
+        {
+            tickets[q.front()]--;
+            if(tickets[q.front()])
+                q.push(q.front());
+                q.pop();
+            time++;
+        }
+        return time;
+
+        //defanding ip address
+         
+        int index=0;
+        string ans;
+
+        while(index<address.size())
+        {
+            if(address[index]=='.')
+            ans=ans+"[.]";
+            
+            else
+            ans=ans+address[index];
+           index++;
+        }
+        return ans;
+        
+    }
+
+    //longest palindrome
+    vector<int>lower(26,0);
+       vector<int>upper(26,0);
        
+      for(int i=0;i<s.size();i++){
+        if(s[i]>='a')
+        lower[s[i]-'a']++;
+        else
+        upper[s[i]-'A']++;
+      }
+      int count=0;
+      bool odd=0;
+      for(int i=0;i<26;i++){
+        if(lower[i]%2==0)
+        count+=lower[i];
+        else{
+            count+=lower[i]-1;
+            odd=1;
+        }
+        if(upper[i]%2==0)
+        count+=upper[i];
+        else{
+            count+=upper[i]-1;
+            odd=1;
+        }
+      }
+      return count+odd;
+    }
+
+    //check if the statement is pangram
+    vector<bool>alpha(26,0);
+        for(int i=0;i<sentence.size();i++){
+            int index=sentence[i]-'a';
+            alpha[index]=1;
+        }
+        for(int i=0;i<26;i++){
+            if(alpha[i]==0)
+            return false;
+        }
+        return true;
+
+    }
+
+    //valid palindrome
+    if((ch>='0' && ch<='9')||
+    (tolower(ch)>='a' && tolower(ch)<='z')){
+    return true;
+    }
+    return false;
+
+    }
+    bool isPalindrome(string s) {
+        
+        int start=0,end=s.length()-1;
+
+       while(start<=end){
+        if(!isAlphanum(s[start])){
+            start++;continue;
+        }
+         if(!isAlphanum(s[end])){
+            end--;continue;
+        }
+        if(tolower(s[start])!= tolower(s[end])){
+        return false;
+       }
+       start++,end--;
+
+       }
+     return true ; 
+    }
+}
+
+//valid paqlindrome
+if((ch>='0' && ch<='9')||
+    (tolower(ch)>='a' && tolower(ch)<='z')){
+    return true;
+    }
+    return false;
+
+    }
+    bool isPalindrome(string s) {
+        
+        int start=0,end=s.length()-1;
+
+       while(start<=end){
+        if(!isAlphanum(s[start])){
+            start++;continue;
+        }
+         if(!isAlphanum(s[end])){
+            end--;continue;
+        }
+        if(tolower(s[start])!= tolower(s[end])){
+        return false;
+       }
+       start++,end--;
+
+       }
+     return true ; 
+    }
+
+    //peak index in an mountain array
+    nt peakIndexInMountainArray(vector<int>& arr) {
+        int start=1,end=arr.size()-2 ;
+        while(start<=end){
+           int mid=start+(end-start)/2;
+            if(arr[mid]>arr[mid-1] && arr[mid]>arr[mid+1])
+            return mid;
+
+            else if(arr[mid-1]<arr[mid])
+            start=mid+1;
+            else
+            end=mid-1;
+        }
+       return -1; 
+    }
+
+    //find minimum in rotated sorted array
+    int findMin(vector<int>& nums) {
+
+        int mini=INT_MAX;
+        for(int i=0;i<nums.size();i++)
+        {
+           if(mini>nums[i])
+           mini=nums[i];
+        }
+        return mini;  
+       }
+
+       
+
